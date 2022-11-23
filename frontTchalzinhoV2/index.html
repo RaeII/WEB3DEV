@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="ethereum.png" type="image/x-icon">
+        <link rel="stylesheet" href="style.css">
+        <title>Connect Wallet</title>
+    </head>
+    <body>
+        <div class="content">
+           <div>
+            <input id="msgToBlock" type="text" placeholder="Mensagem para a block">
+            <button onclick="sendWave()">Enviar</button>
+           </div> 
+            <button class="connect-wallet" onclick="connectWallet()">Conecta as criptu ai</button>
+            <button class="count-tchalzinhos" onclick="wave()">Números de tchalzinhos</button>
+            <button class="count-tchalzinhos" onclick="showWalves()">Ver Mensagens</button>
+            <!-- <button class="count-tchalzinhos" onclick="countTchalzinhos()">Números de tchalzinhos</button> -->
+        </div>
+
+        <div id="content-msg">
+
+        </div>
+        
+        <script src="./scripts/ether.js" type="application/javascript"></script>   
+        <script src="./scripts/jquery.js" type="application/javascript"></script>
+        <script src="./scripts/script.js" type="application/javascript"></script>
+    </body>
+</html>

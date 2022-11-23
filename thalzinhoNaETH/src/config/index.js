@@ -10,6 +10,7 @@ if (envFound.error) {
 
 module.exports = {
   
+
   ALCHEMY_API_URL: process.env.ALCHEMY_API_URL,
   PRIVATE_GOERLI_ACCOUNT_KEY: process.env.PRIVATE_GOERLI_ACCOUNT_KEY,
 

@@ -1,34 +1,39 @@
 const main = async () => {
-  const [owner, randomPerson] = await hre.ethers.getSigners();
-//"npx hardhat" -> no terminal "hre.ethers" = hre construído em tempo real usando o hardhat.config.js
   const waveContractFactory = await hre.ethers.getContractFactory("WavePortal");
-  const waveContract = await waveContractFactory.deploy();
+  const waveContract = await waveContractFactory.deploy({
+    value: hre.ethers.utils.parseEther("0.1"),//depositar ether no contrato
+  });
   await waveContract.deployed();
+  console.log("Endereço do contrato:", waveContract.address);
 
-  console.log("Contract deployed to:", waveContract.address);
-  console.log("Contract deployed by:", owner.address);
+  /*
+   * Consulta saldo do contrato
+   */
+  let contractBalance = await hre.ethers.provider.getBalance(
+    waveContract.address
+  );
+  console.log(
+    "Saldo do contrato:",
+    hre.ethers.utils.formatEther(contractBalance)
+  );
 
-
-  let waveCount;
-  waveCount = await waveContract.getTotalWaves();
-
-  let waveTxn = await waveContract.wave();
+  /*
+   * Enviar tchauzinho
+   */
+  let waveTxn = await waveContract.wave("Uma mensagem!");
   await waveTxn.wait();
 
-  waveCount = await waveContract.getTotalWaves();
+  /*
+   * Recupera o saldo do contrato para verificar o que aconteceu!
+   */
+  contractBalance = await hre.ethers.provider.getBalance(waveContract.address);
+  console.log(
+    "Saldo do  contrato:",
+    hre.ethers.utils.formatEther(contractBalance)
+  );
 
-  waveTxn = await waveContract.connect(randomPerson).wave();
-  await waveTxn.wait();
-
-  waveCount = await waveContract.getTotalWaves();
-
-  // teste para ver se muda a contagem de tchalzinhos 
-  // let waveTx = await waveContract.wave();
-  // await waveTx.wait();
-
-  // let waveT = await waveContract.wave();
-  // await waveT.wait();
-
+  let allWaves = await waveContract.getAllWaves();
+  console.log(allWaves);
 };
 
 const runMain = async () => {

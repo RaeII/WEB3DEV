@@ -1,5 +1,5 @@
 require("@nomiclabs/hardhat-waffle");
-const env = require('./config/index')
+const env = require('./src/config/index')
 
 module.exports = {
   solidity: "0.8.0",
